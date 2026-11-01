@@ -14,7 +14,9 @@ const categories: (Category | 'all')[] = [
   'ground-chakras',
   'flower-pots',
   'bombs',
-  'combos',
+  'shots',
+  'spinners',
+  'fancy',
 ];
 
 const categoryLabels: Record<string, string> = {

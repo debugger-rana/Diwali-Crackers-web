@@ -19,7 +19,7 @@ export default function Navbar({ cartCount, onCartClick, onLogoClick }: NavbarPr
           >
             <GiFireworkRocket className="text-diwali-gold text-2xl" />
             <span className="text-xl font-bold shimmer-text">
-              Diwali Crackers
+              Narayani Fire Works
             </span>
           </button>
 

@@ -16,7 +16,7 @@ export function buildWhatsAppMessage(
     )
     .join('\n');
 
-  const message = `🪔 *New Diwali Crackers Order* 🪔
+  const message = `🪔 *New Order — Narayani Fire Works* 🪔
 ━━━━━━━━━━━━━━━━━━━
 
 📦 *Order Items:*
@@ -33,7 +33,7 @@ PIN: ${delivery.pincode}
 ${delivery.notes ? `\n📝 Notes: ${delivery.notes}` : ''}
 
 ━━━━━━━━━━━━━━━━━━━
-Thank you for shopping with us! 🎆`;
+Thank you for shopping with Narayani Fire Works! 🎆`;
 
   return message;
 }

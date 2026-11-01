@@ -3,3 +3,12 @@ dist
 .DS_Store
 *.local
 .env
+
+
+# Temp files
+sample_*.jpg
+test_thumb.jpg
+drive_folder.html
+parse_drive.cjs
+download_samples*.cjs
+extracted_images.json

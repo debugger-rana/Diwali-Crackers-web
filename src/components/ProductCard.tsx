@@ -1,5 +1,5 @@
-import { useState } from 'react';
-import { FaShoppingCart, FaMinus, FaPlus } from 'react-icons/fa';
+import { useState, useRef, useCallback } from 'react';
+import { FaShoppingCart, FaMinus, FaPlus, FaChevronLeft, FaChevronRight } from 'react-icons/fa';
 import toast from 'react-hot-toast';
 import { Product } from '../types';
 
@@ -10,6 +10,9 @@ interface ProductCardProps {
 
 export default function ProductCard({ product, onAddToCart }: ProductCardProps) {
   const [quantity, setQuantity] = useState(1);
+  const [currentSlide, setCurrentSlide] = useState(0);
+  const touchStartX = useRef(0);
+  const touchEndX = useRef(0);
 
   const discount = product.originalPrice
     ? Math.round(((product.originalPrice - product.price) / product.originalPrice) * 100)
@@ -25,6 +28,24 @@ export default function ProductCard({ product, onAddToCart }: ProductCardProps) 
     setQuantity(1);
   };
 
+  const totalSlides = product.images.length;
+
+  const goTo = useCallback((idx: number) => {
+    setCurrentSlide((idx + totalSlides) % totalSlides);
+  }, [totalSlides]);
+
+  const handleTouchStart = (e: React.TouchEvent) => {
+    touchStartX.current = e.changedTouches[0].screenX;
+  };
+
+  const handleTouchEnd = (e: React.TouchEvent) => {
+    touchEndX.current = e.changedTouches[0].screenX;
+    const diff = touchStartX.current - touchEndX.current;
+    if (Math.abs(diff) > 40) {
+      goTo(diff > 0 ? currentSlide + 1 : currentSlide - 1);
+    }
+  };
+
   return (
     <div className="product-card relative bg-gradient-to-br from-diwali-purple/40 to-diwali-darkBg border border-diwali-gold/20 rounded-2xl overflow-hidden group">
       {/* Discount Badge */}
@@ -34,13 +55,68 @@ export default function ProductCard({ product, onAddToCart }: ProductCardProps) 
         </div>
       )}
 
-      {/* Product Image/Emoji */}
-      <div className="relative h-44 flex items-center justify-center bg-gradient-to-br from-diwali-purple/20 to-diwali-maroon/20 overflow-hidden">
-        <span className="text-7xl group-hover:scale-125 transition-transform duration-500">
-          {product.image}
-        </span>
-        {/* Decorative glow */}
-        <div className="absolute inset-0 bg-gradient-to-t from-diwali-darkBg/80 to-transparent" />
+      {/* Product Image Slider */}
+      <div
+        className="relative h-48 overflow-hidden bg-gradient-to-br from-diwali-purple/10 to-diwali-maroon/10"
+        onTouchStart={handleTouchStart}
+        onTouchEnd={handleTouchEnd}
+      >
+        {/* Images */}
+        <div
+          className="flex h-full transition-transform duration-300 ease-out"
+          style={{ transform: `translateX(-${currentSlide * 100}%)` }}
+        >
+          {product.images.map((src, i) => (
+            <img
+              key={i}
+              src={src}
+              alt={`${product.name} - view ${i + 1}`}
+              className="w-full h-full object-cover flex-shrink-0"
+              loading="lazy"
+            />
+          ))}
+        </div>
+
+        {/* Arrow buttons (show only if multiple images) */}
+        {totalSlides > 1 && (
+          <>
+            <button
+              onClick={() => goTo(currentSlide - 1)}
+              className="absolute left-1 top-1/2 -translate-y-1/2 w-7 h-7 rounded-full bg-black/50 text-white flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity text-xs hover:bg-black/70"
+              aria-label="Previous image"
+            >
+              <FaChevronLeft />
+            </button>
+            <button
+              onClick={() => goTo(currentSlide + 1)}
+              className="absolute right-1 top-1/2 -translate-y-1/2 w-7 h-7 rounded-full bg-black/50 text-white flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity text-xs hover:bg-black/70"
+              aria-label="Next image"
+            >
+              <FaChevronRight />
+            </button>
+          </>
+        )}
+
+        {/* Dots */}
+        {totalSlides > 1 && (
+          <div className="absolute bottom-2 left-0 right-0 flex justify-center gap-1.5">
+            {product.images.map((_, i) => (
+              <button
+                key={i}
+                onClick={() => goTo(i)}
+                className={`w-2 h-2 rounded-full transition-all ${
+                  i === currentSlide
+                    ? 'bg-diwali-gold w-4'
+                    : 'bg-white/50 hover:bg-white/80'
+                }`}
+                aria-label={`Go to image ${i + 1}`}
+              />
+            ))}
+          </div>
+        )}
+
+        {/* Bottom gradient */}
+        <div className="absolute bottom-0 left-0 right-0 h-8 bg-gradient-to-t from-diwali-darkBg/60 to-transparent pointer-events-none" />
       </div>
 
       {/* Content */}

@@ -16,16 +16,22 @@ export default function Footer() {
           </div>
 
           <h3 className="text-xl font-bold shimmer-text mb-2">
-            Diwali Crackers Shop
+            M/S. Narayani Fire Works
           </h3>
+          <p className="text-diwali-cream/60 text-sm mb-1">
+            Prop: Sanjoy Mondal
+          </p>
+          <p className="text-diwali-cream/50 text-sm mb-1">
+            Haral, Champahati, Baruipur - 743330
+          </p>
           <p className="text-diwali-cream/50 text-sm mb-4">
-            Premium Quality Crackers • Best Prices • Safe Delivery
+            📞 8016084107 &nbsp;|&nbsp; All Types of Crackers Sold Here
           </p>
 
           <div className="text-diwali-cream/30 text-xs space-y-1">
             <p>🪔 Wishing you a Happy & Safe Diwali! 🪔</p>
             <p className="mt-4">
-              © {new Date().getFullYear()} Diwali Crackers Shop. All rights reserved.
+              © {new Date().getFullYear()} Narayani Fire Works. All rights reserved.
             </p>
           </div>
         </div>

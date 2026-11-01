@@ -61,9 +61,13 @@ export default function CartDrawer({
                 key={item.product.id}
                 className="flex gap-4 bg-diwali-purple/20 rounded-xl p-4 border border-diwali-gold/10"
               >
-                {/* Emoji */}
-                <div className="text-4xl flex-shrink-0 flex items-center">
-                  {item.product.image}
+                {/* Product thumbnail */}
+                <div className="w-14 h-14 flex-shrink-0 rounded-lg overflow-hidden bg-diwali-purple/30">
+                  <img
+                    src={item.product.images[0]}
+                    alt={item.product.name}
+                    className="w-full h-full object-cover"
+                  />
                 </div>
 
                 {/* Details */}

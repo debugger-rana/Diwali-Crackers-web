@@ -5,7 +5,7 @@ export interface Product {
   price: number;
   originalPrice?: number;
   category: Category;
-  image: string;
+  images: string[];
   inStock: boolean;
 }
 
@@ -15,15 +15,19 @@ export type Category =
   | 'ground-chakras'
   | 'flower-pots'
   | 'bombs'
-  | 'combos';
+  | 'shots'
+  | 'spinners'
+  | 'fancy';
 
 export const CATEGORY_LABELS: Record<Category, string> = {
   'sparklers': '✨ Sparklers',
   'rockets': '🚀 Rockets',
   'ground-chakras': '🌀 Chakras',
   'flower-pots': '🌸 Flower Pots',
-  'bombs': '💥 Bombs',
-  'combos': '🎁 Combo Packs',
+  'bombs': '💥 Bombs & Crackers',
+  'shots': '🎯 Shots',
+  'spinners': '🌪️ Spinners',
+  'fancy': '🎆 Fancy Items',
 };
 
 export interface CartItem {
