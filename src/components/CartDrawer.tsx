@@ -75,9 +75,16 @@ export default function CartDrawer({
                   <h3 className="text-sm font-semibold text-diwali-cream truncate">
                     {item.product.name}
                   </h3>
-                  <p className="text-diwali-gold font-bold mt-1">
-                    ₹{(item.product.price * item.quantity).toLocaleString('en-IN')}
-                  </p>
+                  <div className="flex items-baseline justify-between mt-1">
+                    <p className="text-diwali-gold font-bold text-base">
+                      ₹{(item.product.price * item.quantity).toLocaleString('en-IN')}
+                    </p>
+                    {item.quantity > 1 && (
+                      <span className="text-xs text-diwali-cream/40">
+                        (₹{item.product.price.toLocaleString('en-IN')} × {item.quantity})
+                      </span>
+                    )}
+                  </div>
 
                   {/* Quantity Controls */}
                   <div className="flex items-center gap-2 mt-2">

@@ -129,13 +129,20 @@ export default function ProductCard({ product, onAddToCart }: ProductCardProps) 
         </p>
 
         {/* Price */}
-        <div className="flex items-center gap-2 mb-4">
-          <span className="text-2xl font-bold text-diwali-gold">
-            ₹{product.price.toLocaleString('en-IN')}
-          </span>
-          {product.originalPrice && (
-            <span className="text-sm text-diwali-cream/40 line-through">
-              ₹{product.originalPrice.toLocaleString('en-IN')}
+        <div className="flex items-baseline justify-between mb-4">
+          <div className="flex items-center gap-2">
+            <span className="text-2xl font-bold text-diwali-gold">
+              ₹{(product.price * quantity).toLocaleString('en-IN')}
+            </span>
+            {product.originalPrice && (
+              <span className="text-sm text-diwali-cream/40 line-through">
+                ₹{(product.originalPrice * quantity).toLocaleString('en-IN')}
+              </span>
+            )}
+          </div>
+          {quantity > 1 && (
+            <span className="text-xs text-diwali-cream/50 bg-diwali-purple/40 px-2 py-0.5 rounded">
+              ₹{product.price.toLocaleString('en-IN')} each
             </span>
           )}
         </div>
