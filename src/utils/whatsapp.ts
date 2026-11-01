@@ -10,7 +10,7 @@ export function buildWhatsAppMessage(
   const itemLines = items
     .map(
       (item, i) =>
-        `${i + 1}. ${item.product.name} × ${item.quantity} = ₹${(
+        `${i + 1}. [${item.product.id}] ${item.product.name} × ${item.quantity} = ₹${(
           item.product.price * item.quantity
         ).toLocaleString('en-IN')}`
     )

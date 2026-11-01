@@ -121,9 +121,14 @@ export default function ProductCard({ product, onAddToCart }: ProductCardProps) 
 
       {/* Content */}
       <div className="p-5">
-        <h3 className="text-lg font-semibold text-diwali-cream mb-1 line-clamp-1">
-          {product.name}
-        </h3>
+        <div className="flex items-center justify-between gap-2 mb-1">
+          <h3 className="text-lg font-semibold text-diwali-cream line-clamp-1">
+            {product.name}
+          </h3>
+          <span className="text-[10px] uppercase tracking-wider font-bold px-2 py-0.5 rounded bg-diwali-gold/20 text-diwali-gold border border-diwali-gold/30 shrink-0">
+            {product.id}
+          </span>
+        </div>
         <p className="text-diwali-cream/50 text-sm mb-3 line-clamp-2">
           {product.description}
         </p>

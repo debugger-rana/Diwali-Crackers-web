@@ -19,6 +19,17 @@ export const products: Product[] = [
     inStock: true,
   },
   {
+    id: 'spin-g',
+    name: 'Spinner (G)',
+    description: 'Pack of 10 a box. Dazzling ground spinning display.',
+    price: 250,
+    category: 'spinners',
+    images: [
+      img('1Pqxo96cbeQcCTaXeYmDCkJ9svGXRV4Ki'),
+    ],
+    inStock: true,
+  },
+  {
     id: 'spin-2',
     name: 'lanka',
     description: 'Colorful ground spinners that spin wildly with crackling sparks. Box of 4 pcs.',
@@ -360,6 +371,17 @@ export const products: Product[] = [
     category: 'fancy',
     images: [
       img('1QppURTHaakLJP4C3-zvtqV-3fso34c_7'),  // product image
+    ],
+    inStock: true,
+  },
+  {
+    id: 'balaji-cell',
+    name: 'Balaji Sell',
+    description: '1 single cell. Spectacular high-burst sky effect.',
+    price: 150,
+    category: 'fancy',
+    images: [
+      img('1w4eqR0Hz-ryBO47OZTZYY3jbRJcu9At2'),
     ],
     inStock: true,
   },

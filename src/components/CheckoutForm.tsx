@@ -118,7 +118,7 @@ export default function CheckoutForm({
             {cartItems.map((item) => (
               <div key={item.product.id} className="flex justify-between text-sm text-diwali-cream/70 py-1">
                 <span>
-                  {item.product.name} × {item.quantity}
+                  [{item.product.id}] {item.product.name} × {item.quantity}
                 </span>
                 <span className="text-diwali-gold">
                   ₹{(item.product.price * item.quantity).toLocaleString('en-IN')}
@@ -274,7 +274,12 @@ export default function CheckoutForm({
                       <img src={item.product.images[0]} alt={item.product.name} className="w-full h-full object-cover" />
                     </div>
                     <div>
-                      <p className="text-diwali-cream font-medium">{item.product.name}</p>
+                      <div className="flex items-center gap-2">
+                        <p className="text-diwali-cream font-medium">{item.product.name}</p>
+                        <span className="text-[10px] uppercase font-mono px-1.5 py-0.5 rounded bg-diwali-gold/15 text-diwali-gold">
+                          #{item.product.id}
+                        </span>
+                      </div>
                       <p className="text-diwali-cream/50 text-sm">
                         ₹{item.product.price.toLocaleString('en-IN')} × {item.quantity}
                       </p>

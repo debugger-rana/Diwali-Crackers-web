@@ -72,9 +72,14 @@ export default function CartDrawer({
 
                 {/* Details */}
                 <div className="flex-1 min-w-0">
-                  <h3 className="text-sm font-semibold text-diwali-cream truncate">
-                    {item.product.name}
-                  </h3>
+                  <div className="flex items-center justify-between gap-1">
+                    <h3 className="text-sm font-semibold text-diwali-cream truncate">
+                      {item.product.name}
+                    </h3>
+                    <span className="text-[10px] uppercase font-mono px-1.5 py-0.5 rounded bg-diwali-gold/15 text-diwali-gold/90 shrink-0">
+                      #{item.product.id}
+                    </span>
+                  </div>
                   <div className="flex items-baseline justify-between mt-1">
                     <p className="text-diwali-gold font-bold text-base">
                       ₹{(item.product.price * item.quantity).toLocaleString('en-IN')}
