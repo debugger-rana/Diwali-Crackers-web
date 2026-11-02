@@ -45,7 +45,7 @@ export const products: Product[] = [
     id: 'spin-2-single',
     name: 'lanka (Single Piece)',
     description: '1 single piece of lanka.',
-    price: 30,
+    price: 35,
     category: 'spinners',
     images: [
       img('1hZPTjwgqGLukIsyvGflRL28DOXYF-azW'),
@@ -59,7 +59,7 @@ export const products: Product[] = [
     id: 'fan-1',
     name: 'Blue Octopus',
     description: 'Spectacular sky-filling aerial with blue tentacle trails. 1 Box.',
-    price: 900,
+    price: 1000,
     category: 'fancy',
     images: [
       img('1XHJsNBKSXRK4EUnzGrKe9id-tD3rD5ho'),  // box front
@@ -97,7 +97,7 @@ export const products: Product[] = [
     id: 'fan-4',
     name: 'Rocket',
     description: 'Premium multi-effect showpiece with fountains, crackle and color change. 1 Box.',
-    price: 120,
+    price: 150,
     category: 'fancy',
     images: [
       img('1iEYPhvm-a5A2XK2cf-e9cqV8QRsomMX3'),  // product photo
@@ -145,7 +145,7 @@ export const products: Product[] = [
     id: 'sh-2',
     name: '15-Shots Box',
     description: '15 rapid sky shots — colorful bursts one after another.',
-    price: 300,
+    price: 325,
     category: 'shots',
     images: [
       img('1orQB5-XdDvKoha-X0UPNfHc2kXrW6dHj'),  // 15-Shot Sayan's tube
@@ -182,7 +182,7 @@ export const products: Product[] = [
     id: 'rk-2',
     name: 'Rocket (Sky Lante)',
     description: 'Classic rockets with loud whistle and color burst. per Piece.',
-    price: 25,
+    price: 30,
     category: 'rockets',
     images: [
       img('132TjXt7IbRd_wISzxQ9C3aVrNy2JkdB6'),  // product photo
@@ -193,7 +193,7 @@ export const products: Product[] = [
     id: 'rk-3',
     name: 'Rocket (Penta Sky 🌟)',
     description: 'Budget-friendly rockets, great value! Pack of  Per Box . Pack of 5.',
-    price: 300,
+    price: 350,
     category: 'rockets',
     images: [
       img('1BEtdSrK8B2_rXkDbWc64zf49VZb54V6V'),  // product photo
@@ -241,7 +241,7 @@ export const products: Product[] = [
     id: 'bm-4',
     name: 'Black Cat-50 piece ',
     description: 'Traditional loud crackers for the Diwali celebration! 50 pieces.',
-    price: 350,
+    price: 378,
     category: 'bombs',
     images: [
       img('16K-0GhEDlImolJZIww86B62493zOyZeR'),  // Black Cat bombs in bag
@@ -265,7 +265,7 @@ export const products: Product[] = [
     id: 'bm-6',
     name: 'Gold Bomb (Tugri)',
     description: 'Premium gold-colored loud bombs with satisfying burst. per pieces.',
-    price: 30,
+    price: 33,
     category: 'bombs',
     images: [
       img('1tBQvloIJV6_syojzfzgfliNkKETYzOXy'),  // single gold egg bomb
@@ -277,7 +277,7 @@ export const products: Product[] = [
     id: 'bm-7',
     name: 'Chocolate Bom',
     description: 'Small colorful bombs — great value for continuous fun! Pack of 100.',
-    price: 450,
+    price: 489,
     category: 'bombs',
     images: [
       img('1la5h0btZgLaC5z5zToKNg9ET9ttuzlYH'),  // purple/blue bomb bag
@@ -313,7 +313,7 @@ export const products: Product[] = [
     id: 'sp-3',
     name: '30 shots',
     description: 'Bigger, bolder chocolate sparklers with extra burn time. 50×2 pack.',
-    price: 950,
+    price: 978,
     category: 'sparklers',
     images: [
       img('1ldVwwzRfqDJ658n8HIG783dMaNittqwF'),  // WhatsApp image
@@ -337,7 +337,7 @@ export const products: Product[] = [
     id: 'gc-1',
     name: 'Ground Chakkar(Murga )',
     description: 'Classic spinning ground chakra with multi-color sparks. Sri Kaliswari brand.',
-    price: 500,
+    price: 550,
     category: 'ground-chakras',
     images: [
       img('11t96SI9-lqeR9HA-XzcsWuYLRRYNMhPm'),  // box with chakras inside
@@ -379,7 +379,7 @@ export const products: Product[] = [
     id: 'fan-8',
     name: 'Generator',
     description: 'Large cell crackers with powerful burst and bright flash. 3 pieces.',
-    price: 140,
+    price: 167,
     category: 'fancy',
     images: [
       img('1QppURTHaakLJP4C3-zvtqV-3fso34c_7'),  // product image
@@ -390,7 +390,7 @@ export const products: Product[] = [
     id: 'balaji-cell',
     name: 'Balaji Sell',
     description: '1 single cell. Spectacular high-burst sky effect.',
-    price: 150,
+    price: 172,
     category: 'fancy',
     images: [
       img('1w4eqR0Hz-ryBO47OZTZYY3jbRJcu9At2'),
