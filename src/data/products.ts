@@ -96,8 +96,8 @@ export const products: Product[] = [
   {
     id: 'fan-4',
     name: 'Rocket',
-    description: 'Premium multi-effect showpiece with fountains, crackle and color change. 2 Box.',
-    price: 150,
+    description: 'Premium multi-effect showpiece with fountains, crackle and color change. 1 Box.',
+    price: 120,
     category: 'fancy',
     images: [
       img('1iEYPhvm-a5A2XK2cf-e9cqV8QRsomMX3'),  // product photo
