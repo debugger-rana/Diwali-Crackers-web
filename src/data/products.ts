@@ -32,8 +32,8 @@ export const products: Product[] = [
   {
     id: 'spin-2',
     name: 'lanka',
-    description: 'Colorful ground spinners that spin wildly with crackling sparks. Box of 4 pcs.',
-    price: 1400,
+    description: 'Colorful ground spinners that spin wildly with crackling sparks. 50 Pice :1250',
+    price: 1250,
     category: 'spinners',
     images: [
       img('1hZPTjwgqGLukIsyvGflRL28DOXYF-azW'),  // opened box with items
@@ -145,7 +145,7 @@ export const products: Product[] = [
     id: 'sh-3',
     name: 'Fountain',
     description: 'Five-star sky burst with multi-color effects. pack of 3.',
-    price: 200,
+    price: 180,
     category: 'shots',
     images: [
       img('1ORW2T9ZjgnISua9DjxTFHK0Wj-VCi9ga'),  // product photo
@@ -170,7 +170,7 @@ export const products: Product[] = [
     id: 'rk-2',
     name: 'Rocket (Sky Lante)',
     description: 'Classic rockets with loud whistle and color burst. per Piece.',
-    price: 30,
+    price: 25,
     category: 'rockets',
     images: [
       img('132TjXt7IbRd_wISzxQ9C3aVrNy2JkdB6'),  // product photo
@@ -227,7 +227,7 @@ export const products: Product[] = [
   },
   {
     id: 'bm-4',
-    name: 'Lanka (Atom Bomb)-50 piece ',
+    name: 'Black Cat-50 piece ',
     description: 'Traditional loud crackers for the Diwali celebration! 50 pieces.',
     price: 350,
     category: 'bombs',
@@ -264,8 +264,8 @@ export const products: Product[] = [
   {
     id: 'bm-7',
     name: 'Chocolate Bom',
-    description: 'Small colorful bombs — great value for continuous fun! Pack of 50.',
-    price: 250,
+    description: 'Small colorful bombs — great value for continuous fun! Pack of 100.',
+    price: 450,
     category: 'bombs',
     images: [
       img('1la5h0btZgLaC5z5zToKNg9ET9ttuzlYH'),  // purple/blue bomb bag
