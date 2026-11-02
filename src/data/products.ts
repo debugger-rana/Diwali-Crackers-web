@@ -237,18 +237,18 @@ export const products: Product[] = [
     ],
     inStock: true,
   },
-  {
-    id: 'bm-4',
-    name: 'Black Cat-50 piece ',
-    description: 'Traditional loud crackers for the Diwali celebration! 50 pieces.',
-    price: 378,
-    category: 'bombs',
-    images: [
-      img('16K-0GhEDlImolJZIww86B62493zOyZeR'),  // Black Cat bombs in bag
-      img('117zpwf4AstssU1Gn9RX4bQRfR5vocpsk'),  // alternate view
-    ],
-    inStock: true,
-  },
+  // {
+  //   id: 'bm-4',
+  //   name: 'Black Cat-50 piece ',
+  //   description: 'Traditional loud crackers for the Diwali celebration! 50 pieces.',
+  //   price: 378,
+  //   category: 'bombs',
+  //   images: [
+  //     img('16K-0GhEDlImolJZIww86B62493zOyZeR'),  // Black Cat bombs in bag
+  //     img('117zpwf4AstssU1Gn9RX4bQRfR5vocpsk'),  // alternate view
+  //   ],
+  //   inStock: true,
+  // },
   {
     id: 'bm-5',
     name: 'Chatkan Matchbox',
@@ -273,17 +273,17 @@ export const products: Product[] = [
     ],
     inStock: true,
   },
-  {
-    id: 'bm-7',
-    name: 'Chocolate Bom',
-    description: 'Small colorful bombs — great value for continuous fun! Pack of 100.',
-    price: 489,
-    category: 'bombs',
-    images: [
-      img('1la5h0btZgLaC5z5zToKNg9ET9ttuzlYH'),  // purple/blue bomb bag
-    ],
-    inStock: true,
-  },
+  // {
+  //   id: 'bm-7',
+  //   name: 'Chocolate Bom',
+  //   description: 'Small colorful bombs — great value for continuous fun! Pack of 100.',
+  //   price: 489,
+  //   category: 'bombs',
+  //   images: [
+  //     img('1la5h0btZgLaC5z5zToKNg9ET9ttuzlYH'),  // purple/blue bomb bag
+  //   ],
+  //   inStock: true,
+  // },
 
   // ── Sparklers ─────────────────────────────────────────────
   {
@@ -302,7 +302,7 @@ export const products: Product[] = [
     id: 'sp-2',
     name: 'Rang Massala',
     description: 'Premium chocolate-colored sparklers. 1 packet — great value!',
-    price: 100,
+    price: 122,
     category: 'sparklers',
     images: [
       img('1UakHuZI4HHUNp8nWEAkENPAnvQPloFNt'),  // product photo
@@ -365,7 +365,7 @@ export const products: Product[] = [
     id: 'fp-3',
     name: 'Big Special Cell',
     description: 'Small clay fountain pots with sparkling golden spray. 1 pieces.',
-    price: 300,
+    price: 333,
     category: 'flower-pots',
     images: [
       img('18g4yo2yQDScaXMa3vWbrPrRckwDxVX7J'),  // WhatsApp image
