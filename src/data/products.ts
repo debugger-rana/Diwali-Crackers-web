@@ -41,6 +41,18 @@ export const products: Product[] = [
     ],
     inStock: true,
   },
+  {
+    id: 'spin-2-single',
+    name: 'lanka (Single Piece)',
+    description: '1 single piece of lanka.',
+    price: 30,
+    category: 'spinners',
+    images: [
+      img('1hZPTjwgqGLukIsyvGflRL28DOXYF-azW'),
+      img('1JoY3SDOWLJ-M0q9NVPQ1qQomyMsqBZMb'),
+    ],
+    inStock: true,
+  },
 
   // ── Fancy Items ───────────────────────────────────────────
   {
