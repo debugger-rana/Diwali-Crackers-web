@@ -1,7 +1,8 @@
 import { useState } from 'react';
-import { FaArrowLeft, FaWhatsapp } from 'react-icons/fa';
+import { FaArrowLeft, FaWhatsapp, FaTag } from 'react-icons/fa';
 import { CartItem, DeliveryDetails } from '../types';
 import { sendWhatsAppOrder } from '../utils/whatsapp';
+import { useFlashSale, FLASH_DISCOUNT_PERCENT } from '../hooks/useFlashSale';
 import toast from 'react-hot-toast';
 
 interface CheckoutFormProps {
@@ -25,6 +26,10 @@ export default function CheckoutForm({
   onBack,
   onOrderComplete,
 }: CheckoutFormProps) {
+  const { isActive } = useFlashSale();
+  const discountAmount = isActive ? Math.round(totalPrice * (FLASH_DISCOUNT_PERCENT / 100)) : 0;
+  const finalPrice = totalPrice - discountAmount;
+
   const [delivery, setDelivery] = useState<DeliveryDetails>({
     name: '',
     phone: '',
@@ -66,7 +71,7 @@ export default function CheckoutForm({
   };
 
   const handlePlaceOrder = () => {
-    sendWhatsAppOrder(cartItems, delivery, totalPrice);
+    sendWhatsAppOrder(cartItems, delivery, finalPrice, totalPrice, discountAmount);
     toast.success('🎆 Order sent via WhatsApp! We\'ll confirm shortly.');
     onOrderComplete();
   };
@@ -125,9 +130,17 @@ export default function CheckoutForm({
                 </span>
               </div>
             ))}
+            {isActive && discountAmount > 0 && (
+              <div className="flex justify-between text-sm text-green-400 py-1 font-medium">
+                <span className="flex items-center gap-1.5">
+                  <FaTag className="text-xs" /> 10% Flash Discount
+                </span>
+                <span>-₹{discountAmount.toLocaleString('en-IN')}</span>
+              </div>
+            )}
             <div className="border-t border-diwali-gold/20 mt-3 pt-3 flex justify-between font-bold text-lg">
-              <span>Total</span>
-              <span className="text-diwali-gold">₹{totalPrice.toLocaleString('en-IN')}</span>
+              <span>Total Payable</span>
+              <span className="text-diwali-gold">₹{finalPrice.toLocaleString('en-IN')}</span>
             </div>
           </div>
 
@@ -291,9 +304,17 @@ export default function CheckoutForm({
                 </div>
               ))}
             </div>
+            {isActive && discountAmount > 0 && (
+              <div className="flex justify-between items-center text-green-400 font-medium py-1">
+                <span className="flex items-center gap-1.5">
+                  <FaTag className="text-xs" /> 10% Flash Discount
+                </span>
+                <span>-₹{discountAmount.toLocaleString('en-IN')}</span>
+              </div>
+            )}
             <div className="border-t-2 border-diwali-gold/30 mt-4 pt-4 flex justify-between text-xl font-bold">
               <span>Grand Total</span>
-              <span className="text-diwali-gold">₹{totalPrice.toLocaleString('en-IN')}</span>
+              <span className="text-diwali-gold">₹{finalPrice.toLocaleString('en-IN')}</span>
             </div>
           </div>
 
