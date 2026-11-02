@@ -33,7 +33,7 @@ export const products: Product[] = [
     id: 'spin-2',
     name: 'lanka',
     description: 'Colorful ground spinners that spin wildly with crackling sparks. 50 Pice :1250',
-    price: 1250,
+    price: 1400,
     category: 'spinners',
     images: [
       img('1hZPTjwgqGLukIsyvGflRL28DOXYF-azW'),  // opened box with items
