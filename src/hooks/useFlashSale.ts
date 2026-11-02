@@ -53,3 +53,4 @@ export function useFlashSale(): TimeRemaining {
 
   return timeRemaining;
 }
+

@@ -2,6 +2,8 @@ import { useState } from 'react';
 import { products } from '../data/products';
 import { Category, CATEGORY_LABELS, Product } from '../types';
 import ProductCard from './ProductCard';
+import { useFlashSale, FLASH_DISCOUNT_PERCENT } from '../hooks/useFlashSale';
+import { FaFire } from 'react-icons/fa';
 
 interface ProductCatalogProps {
   onAddToCart: (product: Product, quantity: number) => void;
@@ -26,6 +28,7 @@ const categoryLabels: Record<string, string> = {
 
 export default function ProductCatalog({ onAddToCart }: ProductCatalogProps) {
   const [activeCategory, setActiveCategory] = useState<Category | 'all'>('all');
+  const { isActive } = useFlashSale();
 
   const filteredProducts =
     activeCategory === 'all'
@@ -35,7 +38,7 @@ export default function ProductCatalog({ onAddToCart }: ProductCatalogProps) {
   return (
     <section id="products" className="py-16 px-4 sm:px-6 lg:px-8 max-w-7xl mx-auto">
       {/* Section Header */}
-      <div className="text-center mb-12">
+      <div className="text-center mb-8">
         <h2 className="text-3xl sm:text-4xl md:text-5xl font-bold mb-4">
           <span className="shimmer-text">Our Crackers Collection</span>
         </h2>
@@ -43,6 +46,22 @@ export default function ProductCatalog({ onAddToCart }: ProductCatalogProps) {
           Choose from our wide range of premium crackers — guaranteed quality and best prices! 🎆
         </p>
       </div>
+
+      {/* Flash Sale Banner in Catalog */}
+      {isActive && (
+        <div className="bg-gradient-to-r from-red-950/80 via-amber-950/70 to-red-950/80 border-2 border-yellow-400/50 rounded-2xl p-4 sm:p-5 mb-10 text-center shadow-lg shadow-amber-950/40">
+          <div className="flex flex-wrap items-center justify-center gap-2 sm:gap-3 text-yellow-300 font-extrabold text-sm sm:text-base">
+            <FaFire className="text-amber-400 text-lg animate-bounce" />
+            <span>LIMITED 24-HR FLASH SALE:</span>
+            <span className="bg-yellow-400 text-red-950 font-black px-2.5 py-0.5 rounded-full text-xs sm:text-sm uppercase shadow">
+              FLAT {FLASH_DISCOUNT_PERCENT}% OFF
+            </span>
+            <span className="text-yellow-100/90 font-medium text-xs sm:text-sm">
+              — Applied automatically on every item at checkout! 💥
+            </span>
+          </div>
+        </div>
+      )}
 
       {/* Category Filters */}
       <div className="flex flex-wrap justify-center gap-2 sm:gap-3 mb-10">
