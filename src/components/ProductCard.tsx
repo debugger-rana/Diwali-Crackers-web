@@ -1,8 +1,7 @@
 import { useState, useRef, useCallback } from 'react';
-import { FaShoppingCart, FaMinus, FaPlus, FaChevronLeft, FaChevronRight, FaBolt } from 'react-icons/fa';
+import { FaShoppingCart, FaMinus, FaPlus, FaChevronLeft, FaChevronRight } from 'react-icons/fa';
 import toast from 'react-hot-toast';
 import { Product } from '../types';
-import { useFlashSale } from '../hooks/useFlashSale';
 
 interface ProductCardProps {
   product: Product;
@@ -14,7 +13,6 @@ export default function ProductCard({ product, onAddToCart }: ProductCardProps) 
   const [currentSlide, setCurrentSlide] = useState(0);
   const touchStartX = useRef(0);
   const touchEndX = useRef(0);
-  const { isActive: isFlashActive } = useFlashSale();
 
   const discount = product.originalPrice
     ? Math.round(((product.originalPrice - product.price) / product.originalPrice) * 100)
@@ -50,17 +48,12 @@ export default function ProductCard({ product, onAddToCart }: ProductCardProps) 
 
   return (
     <div className="product-card relative bg-gradient-to-br from-diwali-purple/40 to-diwali-darkBg border border-diwali-gold/20 rounded-2xl overflow-hidden group">
-      {/* Discount / Flash Sale Badge */}
-      {isFlashActive ? (
-        <div className="absolute top-3 right-3 z-10 flex items-center gap-1 bg-gradient-to-r from-red-600 to-amber-600 text-yellow-200 text-xs font-black px-2.5 py-1 rounded-lg border border-yellow-300/50 shadow-lg animate-pulse">
-          <FaBolt className="text-yellow-300 text-[10px]" />
-          <span>10% OFF</span>
-        </div>
-      ) : discount > 0 ? (
+      {/* Discount Badge */}
+      {discount > 0 && (
         <div className="absolute top-3 right-3 z-10 bg-red-500 text-white text-xs font-bold px-2 py-1 rounded-lg">
           {discount}% OFF
         </div>
-      ) : null}
+      )}
 
       {/* Product Image Slider */}
       <div
@@ -140,43 +133,21 @@ export default function ProductCard({ product, onAddToCart }: ProductCardProps) 
           {product.description}
         </p>
 
-        {/* Price Section */}
-        <div className="flex flex-col mb-4">
-          <div className="flex items-baseline justify-between">
-            <div className="flex items-center gap-2">
-              {isFlashActive ? (
-                <>
-                  <span className="text-2xl font-bold text-diwali-gold">
-                    ₹{Math.round(product.price * 0.9 * quantity).toLocaleString('en-IN')}
-                  </span>
-                  <span className="text-sm text-diwali-cream/40 line-through">
-                    ₹{(product.price * quantity).toLocaleString('en-IN')}
-                  </span>
-                </>
-              ) : (
-                <>
-                  <span className="text-2xl font-bold text-diwali-gold">
-                    ₹{(product.price * quantity).toLocaleString('en-IN')}
-                  </span>
-                  {product.originalPrice && (
-                    <span className="text-sm text-diwali-cream/40 line-through">
-                      ₹{(product.originalPrice * quantity).toLocaleString('en-IN')}
-                    </span>
-                  )}
-                </>
-              )}
-            </div>
-            {isFlashActive && (
-              <span className="text-[11px] font-extrabold uppercase bg-red-600/90 text-yellow-300 border border-yellow-400/40 px-2 py-0.5 rounded-full shadow-sm">
-                -10% DEAL
+        {/* Price */}
+        <div className="flex items-baseline justify-between mb-4">
+          <div className="flex items-center gap-2">
+            <span className="text-2xl font-bold text-diwali-gold">
+              ₹{(product.price * quantity).toLocaleString('en-IN')}
+            </span>
+            {product.originalPrice && (
+              <span className="text-sm text-diwali-cream/40 line-through">
+                ₹{(product.originalPrice * quantity).toLocaleString('en-IN')}
               </span>
             )}
           </div>
           {quantity > 1 && (
-            <span className="text-xs text-diwali-cream/50 mt-1">
-              {isFlashActive
-                ? `₹${Math.round(product.price * 0.9).toLocaleString('en-IN')} each (with 10% off)`
-                : `₹${product.price.toLocaleString('en-IN')} each`}
+            <span className="text-xs text-diwali-cream/50 bg-diwali-purple/40 px-2 py-0.5 rounded">
+              ₹{product.price.toLocaleString('en-IN')} each
             </span>
           )}
         </div>

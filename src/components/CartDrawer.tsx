@@ -1,6 +1,5 @@
-import { FaTimes, FaMinus, FaPlus, FaTrash, FaTag } from 'react-icons/fa';
+import { FaTimes, FaMinus, FaPlus, FaTrash } from 'react-icons/fa';
 import { CartItem } from '../types';
-import { useFlashSale, FLASH_DISCOUNT_PERCENT } from '../hooks/useFlashSale';
 
 interface CartDrawerProps {
   isOpen: boolean;
@@ -21,11 +20,7 @@ export default function CartDrawer({
   onRemoveItem,
   onCheckout,
 }: CartDrawerProps) {
-  const { isActive } = useFlashSale();
   if (!isOpen) return null;
-
-  const discountAmount = isActive ? Math.round(totalPrice * (FLASH_DISCOUNT_PERCENT / 100)) : 0;
-  const finalPrice = totalPrice - discountAmount;
 
   return (
     <>
@@ -64,10 +59,10 @@ export default function CartDrawer({
             items.map((item) => (
               <div
                 key={item.product.id}
-                className="flex gap-4 bg-diwali-purple/20 rounded-xl p-4 border border-diwali-gold/10"
+                className="flex gap-4 p-4 rounded-xl bg-diwali-purple/20 border border-diwali-gold/10"
               >
-                {/* Product thumbnail */}
-                <div className="w-14 h-14 flex-shrink-0 rounded-lg overflow-hidden bg-diwali-purple/30">
+                {/* Product Thumbnail */}
+                <div className="w-16 h-16 rounded-lg overflow-hidden bg-diwali-purple/30 flex-shrink-0">
                   <img
                     src={item.product.images[0]}
                     alt={item.product.name}
@@ -77,16 +72,16 @@ export default function CartDrawer({
 
                 {/* Details */}
                 <div className="flex-1 min-w-0">
-                  <div className="flex items-center justify-between gap-1">
-                    <h3 className="text-sm font-semibold text-diwali-cream truncate">
+                  <div className="flex items-center gap-2 mb-0.5">
+                    <h3 className="font-semibold text-diwali-cream truncate text-sm">
                       {item.product.name}
                     </h3>
-                    <span className="text-[10px] uppercase font-mono px-1.5 py-0.5 rounded bg-diwali-gold/15 text-diwali-gold/90 shrink-0">
+                    <span className="text-[10px] uppercase font-mono px-1.5 py-0.2 rounded bg-diwali-gold/15 text-diwali-gold shrink-0">
                       #{item.product.id}
                     </span>
                   </div>
-                  <div className="flex items-baseline justify-between mt-1">
-                    <p className="text-diwali-gold font-bold text-base">
+                  <div className="flex items-baseline gap-2">
+                    <p className="text-diwali-gold font-bold">
                       ₹{(item.product.price * item.quantity).toLocaleString('en-IN')}
                     </p>
                     {item.quantity > 1 && (
@@ -132,38 +127,16 @@ export default function CartDrawer({
 
         {/* Footer */}
         {items.length > 0 && (
-          <div className="border-t border-diwali-gold/20 p-5 space-y-3">
-            {isActive && discountAmount > 0 && (
-              <div className="space-y-1.5 pb-2 border-b border-diwali-gold/10">
-                <div className="flex justify-between items-center text-sm text-diwali-cream/70">
-                  <span>Subtotal:</span>
-                  <span>₹{totalPrice.toLocaleString('en-IN')}</span>
-                </div>
-                <div className="flex justify-between items-center text-sm text-green-400 font-medium">
-                  <span className="flex items-center gap-1.5">
-                    <FaTag className="text-xs" /> 10% Flash Discount:
-                  </span>
-                  <span>-₹{discountAmount.toLocaleString('en-IN')}</span>
-                </div>
-              </div>
-            )}
-
+          <div className="border-t border-diwali-gold/20 p-5 space-y-4">
             <div className="flex justify-between items-center">
-              <span className="text-diwali-cream/80 text-lg font-medium">Total to Pay:</span>
-              <div className="text-right">
-                <span className="text-2xl font-bold text-diwali-gold">
-                  ₹{finalPrice.toLocaleString('en-IN')}
-                </span>
-                {isActive && discountAmount > 0 && (
-                  <span className="block text-[11px] text-green-300 font-semibold">
-                    You save ₹{discountAmount.toLocaleString('en-IN')}!
-                  </span>
-                )}
-              </div>
+              <span className="text-diwali-cream/80 text-lg">Total:</span>
+              <span className="text-2xl font-bold text-diwali-gold">
+                ₹{totalPrice.toLocaleString('en-IN')}
+              </span>
             </div>
             <button
               onClick={onCheckout}
-              className="glow-btn w-full py-4 rounded-xl bg-gradient-to-r from-diwali-deepOrange to-diwali-gold text-diwali-darkBg font-bold text-lg flex items-center justify-center gap-2 mt-2"
+              className="glow-btn w-full py-4 rounded-xl bg-gradient-to-r from-diwali-deepOrange to-diwali-gold text-diwali-darkBg font-bold text-lg flex items-center justify-center gap-2"
             >
               Proceed to Checkout 🪔
             </button>

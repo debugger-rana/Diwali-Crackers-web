@@ -1,8 +1,7 @@
 import { useState } from 'react';
-import { FaArrowLeft, FaWhatsapp, FaTag } from 'react-icons/fa';
+import { FaArrowLeft, FaWhatsapp } from 'react-icons/fa';
 import { CartItem, DeliveryDetails } from '../types';
 import { sendWhatsAppOrder } from '../utils/whatsapp';
-import { useFlashSale, FLASH_DISCOUNT_PERCENT } from '../hooks/useFlashSale';
 import toast from 'react-hot-toast';
 
 interface CheckoutFormProps {
@@ -26,10 +25,6 @@ export default function CheckoutForm({
   onBack,
   onOrderComplete,
 }: CheckoutFormProps) {
-  const { isActive } = useFlashSale();
-  const discountAmount = isActive ? Math.round(totalPrice * (FLASH_DISCOUNT_PERCENT / 100)) : 0;
-  const finalPrice = totalPrice - discountAmount;
-
   const [delivery, setDelivery] = useState<DeliveryDetails>({
     name: '',
     phone: '',
@@ -71,7 +66,7 @@ export default function CheckoutForm({
   };
 
   const handlePlaceOrder = () => {
-    sendWhatsAppOrder(cartItems, delivery, finalPrice, totalPrice, discountAmount);
+    sendWhatsAppOrder(cartItems, delivery, totalPrice);
     toast.success('🎆 Order sent via WhatsApp! We\'ll confirm shortly.');
     onOrderComplete();
   };
@@ -101,52 +96,46 @@ export default function CheckoutForm({
   }
 
   return (
-    <div className="min-h-screen pt-24 pb-16 px-4 sm:px-6 lg:px-8 max-w-4xl mx-auto">
-      {/* Back Button */}
+    <div className="min-h-screen pt-24 pb-16 px-4 sm:px-6 lg:px-8 max-w-3xl mx-auto">
+      {/* Back button */}
       <button
-        onClick={onBack}
-        className="flex items-center gap-2 text-diwali-gold hover:text-diwali-warmYellow transition-colors mb-8"
+        onClick={showSummary ? () => setShowSummary(false) : onBack}
+        className="inline-flex items-center gap-2 text-diwali-cream/70 hover:text-diwali-gold transition-colors mb-6 text-sm"
       >
-        <FaArrowLeft /> Back to Shop
+        <FaArrowLeft />
+        {showSummary ? 'Back to form' : 'Back to shopping'}
       </button>
 
       {!showSummary ? (
+        /* Delivery Form */
         <>
-          {/* Checkout Header */}
-          <h2 className="text-3xl sm:text-4xl font-bold mb-8">
-            <span className="shimmer-text">📋 Delivery Details</span>
-          </h2>
+          <div className="text-center mb-8">
+            <h2 className="text-3xl sm:text-4xl font-bold mb-2">
+              <span className="shimmer-text">📍 Delivery Details</span>
+            </h2>
+            <p className="text-diwali-cream/60">
+              Cash on Delivery (COD) available for all orders!
+            </p>
+          </div>
 
-          {/* Order Summary Mini */}
-          <div className="bg-diwali-purple/20 border border-diwali-gold/20 rounded-xl p-5 mb-8">
-            <h3 className="text-diwali-gold font-semibold mb-3">Your Order ({cartItems.length} items)</h3>
-            {cartItems.map((item) => (
-              <div key={item.product.id} className="flex justify-between text-sm text-diwali-cream/70 py-1">
-                <span>
-                  [{item.product.id}] {item.product.name} × {item.quantity}
-                </span>
-                <span className="text-diwali-gold">
-                  ₹{(item.product.price * item.quantity).toLocaleString('en-IN')}
-                </span>
-              </div>
-            ))}
-            {isActive && discountAmount > 0 && (
-              <div className="flex justify-between text-sm text-green-400 py-1 font-medium">
-                <span className="flex items-center gap-1.5">
-                  <FaTag className="text-xs" /> 10% Flash Discount
-                </span>
-                <span>-₹{discountAmount.toLocaleString('en-IN')}</span>
-              </div>
-            )}
-            <div className="border-t border-diwali-gold/20 mt-3 pt-3 flex justify-between font-bold text-lg">
-              <span>Total Payable</span>
-              <span className="text-diwali-gold">₹{finalPrice.toLocaleString('en-IN')}</span>
+          {/* Mini order preview */}
+          <div className="bg-diwali-purple/20 border border-diwali-gold/20 rounded-xl p-4 mb-8">
+            <div className="flex justify-between items-center text-sm">
+              <span className="text-diwali-cream/70">
+                {cartItems.reduce((acc, i) => acc + i.quantity, 0)} items in cart:
+              </span>
+              <span className="text-diwali-gold font-bold text-lg">
+                ₹{totalPrice.toLocaleString('en-IN')}
+              </span>
+            </div>
+            <div className="mt-2 text-xs text-diwali-cream/50 truncate">
+              {cartItems.map((i) => `${i.product.name} (x${i.quantity}) [#${i.product.id}]`).join(', ')}
             </div>
           </div>
 
           {/* Form */}
-          <div className="space-y-5">
-            {/* Name */}
+          <div className="space-y-5 bg-diwali-purple/10 border border-diwali-gold/20 rounded-2xl p-6 sm:p-8">
+            {/* Full Name */}
             <div>
               <label className="block text-diwali-cream/80 text-sm font-medium mb-2">
                 Full Name *
@@ -168,18 +157,23 @@ export default function CheckoutForm({
             {/* Phone */}
             <div>
               <label className="block text-diwali-cream/80 text-sm font-medium mb-2">
-                Phone Number *
+                Mobile Number *
               </label>
-              <input
-                type="tel"
-                value={delivery.phone}
-                onChange={(e) => handleChange('phone', e.target.value)}
-                placeholder="10-digit mobile number"
-                maxLength={10}
-                className={`w-full px-4 py-3 rounded-xl bg-diwali-purple/20 border ${
-                  errors.phone ? 'border-red-500' : 'border-diwali-gold/20'
-                } text-diwali-cream placeholder-diwali-cream/30 focus:outline-none focus:border-diwali-gold focus:ring-1 focus:ring-diwali-gold/50 transition-colors`}
-              />
+              <div className="relative">
+                <span className="absolute left-4 top-1/2 -translate-y-1/2 text-diwali-cream/50 text-sm">
+                  +91
+                </span>
+                <input
+                  type="tel"
+                  value={delivery.phone}
+                  onChange={(e) => handleChange('phone', e.target.value.replace(/\D/g, '').slice(0, 10))}
+                  placeholder="10-digit mobile number"
+                  maxLength={10}
+                  className={`w-full pl-14 pr-4 py-3 rounded-xl bg-diwali-purple/20 border ${
+                    errors.phone ? 'border-red-500' : 'border-diwali-gold/20'
+                  } text-diwali-cream placeholder-diwali-cream/30 focus:outline-none focus:border-diwali-gold focus:ring-1 focus:ring-diwali-gold/50 transition-colors`}
+                />
+              </div>
               {errors.phone && (
                 <p className="text-red-400 text-sm mt-1">{errors.phone}</p>
               )}
@@ -193,7 +187,7 @@ export default function CheckoutForm({
               <textarea
                 value={delivery.address}
                 onChange={(e) => handleChange('address', e.target.value)}
-                placeholder="House/Flat No., Street, Landmark"
+                placeholder="House/Flat No., Street, Landmark..."
                 rows={3}
                 className={`w-full px-4 py-3 rounded-xl bg-diwali-purple/20 border ${
                   errors.address ? 'border-red-500' : 'border-diwali-gold/20'
@@ -304,17 +298,9 @@ export default function CheckoutForm({
                 </div>
               ))}
             </div>
-            {isActive && discountAmount > 0 && (
-              <div className="flex justify-between items-center text-green-400 font-medium py-1">
-                <span className="flex items-center gap-1.5">
-                  <FaTag className="text-xs" /> 10% Flash Discount
-                </span>
-                <span>-₹{discountAmount.toLocaleString('en-IN')}</span>
-              </div>
-            )}
             <div className="border-t-2 border-diwali-gold/30 mt-4 pt-4 flex justify-between text-xl font-bold">
-              <span>Grand Total</span>
-              <span className="text-diwali-gold">₹{finalPrice.toLocaleString('en-IN')}</span>
+              <span>Total Amount</span>
+              <span className="text-diwali-gold">₹{totalPrice.toLocaleString('en-IN')}</span>
             </div>
           </div>
 
